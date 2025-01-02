@@ -1,3 +1,6 @@
+import {
+	get_message,
+} from "./lib.js";
 
 describe("2016-12-06", () => {
 	const testcases = [
@@ -22,7 +25,7 @@ enarar`, "easter"],
 	for (let i = 0; i < testcases.length; i++) {
 		it(`test-${i}`, () => {
 			const tc = testcases[i];
-			// TODO
+			expect(get_message(tc[0])).toBe(tc[1]);
 		})
 	}
 });
