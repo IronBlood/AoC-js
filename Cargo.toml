@@ -1,0 +1,11 @@
+[package]
+name = "AoC-aux"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+regex = "1.11.1"
+
+[[bin]]
+name = "main-2016-12-11"
+path = "src/2016-12-11/main.rs"
