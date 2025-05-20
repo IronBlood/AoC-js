@@ -8,7 +8,7 @@ const spells = [
 
 /**
  * @typedef {Object} Buff
- * @property {"armor"|"damage"|"mana"} key
+ * @property {"armor"|"hp"|"mana"} key
  * @property {number} value
  * @property {number} remain
  */
@@ -43,7 +43,6 @@ const deep_copy = obj => JSON.parse(JSON.stringify(obj));
 export const least_mana = (player_init_state, boss_init_state, part = 1) => {
 	const PLAYER_TURN = 1, BOSS_TURN = 0;
 	let min_mana = Number.MAX_SAFE_INTEGER;
-	let loop = 0;
 
 	/** @type {Set<string>} */
 	const memo = new Set();
