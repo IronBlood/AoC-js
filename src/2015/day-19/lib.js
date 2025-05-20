@@ -81,7 +81,6 @@ function shuffleArray(array) {
 export const reduce = data => {
 	const [replacements, target] = data.split("\n\n");
 
-	const elements = split_molecue(target);
 	const reduce_map = replacements.split("\n").map(line => line.split(" => "));
 
 	let mol = target, steps = 0;
@@ -90,13 +89,14 @@ export const reduce = data => {
 	while (mol != "e") {
 		if (counter++ > 1000000)
 			break;
+		const prev = mol;
 		for (const [f,t] of reduce_map) {
 			if (mol.indexOf(t) < 0)
 				continue;
 			mol = mol.replace(t,f);
 			steps++;
 		}
-		if (mol == target) {
+		if (mol == prev) {
 			mol = target;
 			steps = 0;
 			console.log("shuffled");
