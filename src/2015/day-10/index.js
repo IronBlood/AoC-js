@@ -1,20 +1,20 @@
-import { fileURLToPath } from 'node:url';
-import { dirname } from 'node:path';
-import { readFileSync } from "node:fs";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-const input_filename = `${__dirname}/input.txt`;
-const content = readFileSync(input_filename, "utf8").trimEnd();
-
 import {
 	look_and_say,
 } from "./lib.js";
 
-let str = content;
-for (let i = 0; i < 50; i++) {
-	str = look_and_say(str);
+/**
+ * @param {string} content
+ */
+export function main(content) {
+	let str = content;
+	for (let i = 0; i < 50; i++) {
+		if (i === 40) {
+			// part 1
+			console.log(str.length);
+		}
+		str = look_and_say(str);
+	}
+	// part 2
+	console.log(str.length);
 }
-console.log(str.length);
 
