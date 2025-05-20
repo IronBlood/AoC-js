@@ -7,11 +7,10 @@ export const fill_containers = (containers, total) => {
 	let ans = 0;
 
 	/**
-	 * @param {number[]} stack
 	 * @param {number}   curr
 	 * @param {number}   remain
 	 */
-	const backtracking = (stack, curr, remain) => {
+	const backtracking = (curr, remain) => {
 		if (remain < 0) {
 			return;
 		}
@@ -20,13 +19,11 @@ export const fill_containers = (containers, total) => {
 			return;
 		}
 		for (let j = curr + 1; j < containers.length; j++) {
-			stack.push(j);
-			backtracking(stack, j, remain - containers[j]);
-			stack.pop();
+			backtracking(j, remain - containers[j]);
 		}
 	};
 
-	backtracking([], -1, total);
+	backtracking(-1, total);
 
 	return ans;
 };
