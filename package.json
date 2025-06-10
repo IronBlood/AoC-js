@@ -6,10 +6,11 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"test": "NODE_OPTIONS=--experimental-vm-modules npx jest"
+		"test": "NODE_OPTIONS=--experimental-vm-modules jest"
 	},
 	"devDependencies": {
-		"jest": "^29.7.0"
+		"@jest/globals": "^30.0.0",
+		"jest": "^30.0.0"
 	},
 	"keywords": [],
 	"author": "",

@@ -58,7 +58,7 @@ function create_lib(folderPath) {
  */
 function create_test(folderPath) {
 	const filePath = path.join(folderPath, "lib.test.js");
-	const content = "import {} from \"./lib.js\";\n\n\n";
+	const content = "import { describe, it, expect } from '@jest/globals';\nimport {\n} from \"./lib.js\";\n\n\n";
 	create_file(filePath, content);
 }
 
@@ -73,4 +73,3 @@ export function scaffolding(year, day) {
 	create_lib(folderPath);
 	create_test(folderPath);
 }
-
