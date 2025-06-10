@@ -30,7 +30,7 @@ export async function main() {
 	}
 
 	if (action === "scaffolding" || action === "s") {
-		scaffolding(year, day);
+		await scaffolding(year, day);
 		process.exit(0);
 	}
 

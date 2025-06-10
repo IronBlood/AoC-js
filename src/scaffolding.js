@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 
+import "dotenv/config";
 
 /**
  * @param {string} folderPath
@@ -63,13 +64,40 @@ function create_test(folderPath) {
 }
 
 /**
+ * @param {string} folderPath
+ * @param {number} year
+ * @param {number} day
+ */
+async function fetch_input(folderPath, year, day) {
+	const filePath = path.join(folderPath, "input.txt");
+	if (fs.existsSync(filePath)) {
+		console.log(`Skipping ${filePath}`)
+		return;
+	}
+
+	const url = `https://adventofcode.com/${year}/day/${day}/input`;
+	const res = await fetch(url, {
+		headers: {
+			cookie: process.env.COOKIE || "",
+		},
+	});
+	if (!res.ok) {
+		console.log("Failed to fetch input");
+		return;
+	}
+	const text = await res.text();
+	create_file(filePath, text);
+}
+
+/**
  * @param {string} year
  * @param {string} day
  */
-export function scaffolding(year, day) {
+export async function scaffolding(year, day) {
 	const folderPath = path.join("src", year, `day-${day}`);
 	create_folder(folderPath);
 	create_index(folderPath);
 	create_lib(folderPath);
 	create_test(folderPath);
+	await fetch_input(folderPath, +year, +day);
 }
