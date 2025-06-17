@@ -1,37 +1,14 @@
-/**
- * @param {number[]} integers
- */
-const exec = integers => {
-	for (let ip = 0; ip < integers.length; ip += 4) {
-		const opcode = integers[ip];
-		if (![1, 2, 99].includes(opcode)) {
-			console.error(`unknown opcode ${opcode} @ ${ip}`);
-		}
-		if (opcode === 99) {
-			break;
-		}
-		let a = integers[ip + 1],
-			b = integers[ip + 2],
-			c = integers[ip + 3];
-		integers[c] = opcode === 1
-			? integers[a] + integers[b]
-			: integers[a] * integers[b];
-	}
-	//console.log(integers);
-};
+import { IntcodeVM } from "../common/IntcodeVM.js";
 
 /**
  * @param {string} data
+ * @param {[number, number] | undefined} adjust
  */
-export const get_pos0 = (data, adjust = [0, 0]) => {
+export const get_pos0 = (data, adjust) => {
 	const integers = data.split(",").map(Number);
-
-	integers[1] = adjust[0];
-	integers[2] = adjust[1];
-
-	exec(integers);
-
-	return integers[0];
+	const vm = new IntcodeVM(integers, adjust);
+	vm.run();
+	return vm.get_memory(0);
 };
 
 /**
