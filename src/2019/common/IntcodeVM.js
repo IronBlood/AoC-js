@@ -10,6 +10,14 @@ export const STEP_EVENT = {
 };
 
 /**
+ * @typedef {Object} PauseTypeNoValue
+ * @property {STEP_EVENT.INPUT_NEEDED | STEP_EVENT.HALTED} type
+ * @typedef {Object} PauseTypeWithValue
+ * @property {STEP_EVENT.OUTPUT} type
+ * @property {number} value
+ */
+
+/**
  * @readonly
  * @enum {number}
  */
@@ -82,6 +90,16 @@ export class IntcodeVM {
 
 		/** @type {number[]} */
 		this.output = [];
+	}
+
+	clone() {
+		const vm = new IntcodeVM(this.memory);
+		vm.ip          = this.ip;
+		vm.halted      = this.halted;
+		vm.base        = this.base;
+		vm.input_queue = this.input_queue.slice();
+		vm.output      = this.output.slice();
+		return vm;
 	}
 
 	/**
@@ -237,6 +255,24 @@ export class IntcodeVM {
 		} while (res.type !== STEP_EVENT.HALTED);
 
 		return { halted: true };
+	}
+
+	/**
+	 * This is a thin wrapper of _step.
+	 * @returns {{ type: STEP_EVENT.OUTPUT; value: number; } | { type: STEP_EVENT.INPUT_NEEDED } | { type: STEP_EVENT.HALTED }}
+	 */
+	run_until_event() {
+		if (this.halted) {
+			return { type: STEP_EVENT.HALTED };
+		}
+
+		/** @type {ReturnType<typeof this._step>} */
+		let res;
+		do {
+			res = this._step();
+		} while (res.type === STEP_EVENT.CONTINUE)
+
+		return res;
 	}
 
 	/**
