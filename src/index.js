@@ -40,7 +40,7 @@ export async function main() {
 
 	try {
 		const raw = await readFile(inputPath, "utf-8");
-		inputData = raw.trim();
+		inputData = raw.trimEnd();
 	} catch (err) {
 		console.error(`Cannot open input file at "${inputPath}": ${err.message}`);
 		process.exit(1);
