@@ -1,4 +1,4 @@
-const gcd = (a, b) => (b === 0 ? Math.abs(a) : gcd(b, a % b));
+import { gcd } from "../../lib/math.js";
 
 /**
  * @param {string[][]} grid
