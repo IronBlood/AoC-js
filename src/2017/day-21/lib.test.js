@@ -1,7 +1,9 @@
 import {
 	count_on,
-	rotate_tile,
 } from "./lib.js";
+import {
+	rotate_tile,
+} from "../../lib/matrix.js";
 
 describe("2017-12-21 p1", () => {
 	const testcases = [
