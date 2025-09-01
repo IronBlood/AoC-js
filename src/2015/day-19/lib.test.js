@@ -1,3 +1,4 @@
+import { describe, it, expect } from '@jest/globals';
 import {
 	possible_molecules,
 } from "./lib.js";

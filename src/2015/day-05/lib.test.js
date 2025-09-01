@@ -1,3 +1,4 @@
+import { describe, it, expect } from '@jest/globals';
 import {
 	is_nice,
 	is_nice2,

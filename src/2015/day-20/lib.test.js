@@ -1,3 +1,4 @@
+import { describe, it, expect } from '@jest/globals';
 import {
 	count_presents_by_houseid,
 } from "./lib.js";

@@ -1,3 +1,4 @@
+import { describe, it, expect } from '@jest/globals';
 import {
 	least_mana,
 } from "./lib.js";

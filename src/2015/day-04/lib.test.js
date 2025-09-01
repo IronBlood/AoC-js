@@ -1,3 +1,4 @@
+import { describe, it, expect } from '@jest/globals';
 import {
 	mine_coin
 } from "./lib.js";

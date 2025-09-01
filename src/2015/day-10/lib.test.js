@@ -1,3 +1,4 @@
+import { describe, it, expect } from '@jest/globals';
 import {
 	look_and_say,
 } from "./lib.js";

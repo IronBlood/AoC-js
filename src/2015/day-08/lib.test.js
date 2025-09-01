@@ -1,3 +1,4 @@
+import { describe, it, expect } from '@jest/globals';
 import {
 	diff_decode,
 	diff_encode,

@@ -1,3 +1,4 @@
+import { describe, it, expect } from '@jest/globals';
 import {
 	can_win,
 } from "./lib.js";
