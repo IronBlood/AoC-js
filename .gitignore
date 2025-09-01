@@ -7,3 +7,9 @@ input.txt
 # rust
 target/
 
+# ignore local temp files
+/*.txt
+/*.dot
+/*.svg
+/*.png
+/*.ods
