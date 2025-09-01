@@ -1,3 +1,4 @@
+import { describe, it, expect } from '@jest/globals';
 import {
 	get_outcome,
 	get_outcome2,

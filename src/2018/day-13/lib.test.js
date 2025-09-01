@@ -1,3 +1,4 @@
+import { describe, it, expect } from '@jest/globals';
 import {
 	first_crash,
 	last_position,

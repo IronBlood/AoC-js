@@ -1,3 +1,4 @@
+import { describe, it, expect } from '@jest/globals';
 import {
 	count_three_opcodes,
 } from "./lib.js";

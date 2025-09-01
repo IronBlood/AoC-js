@@ -1,3 +1,4 @@
+import { describe, it, expect } from '@jest/globals';
 import {
 	overlapping_area,
 } from "./lib.js";

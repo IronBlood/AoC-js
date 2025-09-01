@@ -163,8 +163,6 @@ export function fewest_minutes(input) {
 		Equipment.TORC,
 	];
 
-	let minimum = Number.MAX_SAFE_INTEGER;
-
 	while (queue.length > 0) {
 		/** @type {typeof queue} */
 		const next_queue = [];
@@ -174,11 +172,6 @@ export function fewest_minutes(input) {
 			if (state.time_elapsed >= visited[v][u][state.equipment])
 				continue;
 			visited[v][u][state.equipment] = state.time_elapsed;
-			if (v === y && u === x) {
-				if (state.time_elapsed < minimum) {
-					minimum = state.time_elapsed;
-				}
-			}
 
 			for (let i = 0; i < 4; i++) {
 				const nx = u + DIRS[i], ny = v + DIRS[i + 1];
@@ -205,5 +198,6 @@ export function fewest_minutes(input) {
 		queue = next_queue;
 	}
 
+	const times = visited[y][x];
 	return Math.min(times[Equipment.TORC], 7 + Math.min(times[Equipment.NONE], times[Equipment.GEAR]));
 }

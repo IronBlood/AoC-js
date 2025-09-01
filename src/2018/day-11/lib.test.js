@@ -1,3 +1,4 @@
+import { describe, it, expect } from '@jest/globals';
 import {
 	get_power_level,
 	largest_total_power_pos,

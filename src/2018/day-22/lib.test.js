@@ -1,3 +1,4 @@
+import { describe, it, expect } from '@jest/globals';
 import {
 	total_risk,
 	fewest_minutes,

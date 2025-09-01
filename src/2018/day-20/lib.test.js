@@ -1,3 +1,4 @@
+import { describe, it, expect } from '@jest/globals';
 import {
 	do_fewest_doors,
 	get_count,
