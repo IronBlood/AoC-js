@@ -1,3 +1,4 @@
+import { describe, it, expect } from '@jest/globals';
 import {
 	sim_8bit_computer,
 	find_a,

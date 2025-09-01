@@ -1,3 +1,4 @@
+import { describe, it, expect } from '@jest/globals';
 import {
 	stones_after_blinks_naive,
 } from "./lib.js";

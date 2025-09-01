@@ -1,3 +1,4 @@
+import { describe, it, expect } from '@jest/globals';
 import {
 	sum_of_gps_coordinates,
 	sum_of_gps_coordinates_2,

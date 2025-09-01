@@ -1,3 +1,4 @@
+import { describe, it, expect } from '@jest/globals';
 import {
 	lowest_score,
 	count_tiles,

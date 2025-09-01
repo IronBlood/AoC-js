@@ -1,3 +1,4 @@
+import { describe, it, expect } from '@jest/globals';
 import {
 	next_secret_num,
 	sum_2000th,

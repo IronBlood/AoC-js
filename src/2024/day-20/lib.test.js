@@ -1,3 +1,4 @@
+import { describe, it, expect } from '@jest/globals';
 import {
 	count_cheats_by_saving,
 } from "./lib.js";

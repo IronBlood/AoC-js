@@ -1,3 +1,4 @@
+import { describe, it, expect } from '@jest/globals';
 import {
 	compact_and_get_checksum1,
 	compact_and_get_checksum2,
