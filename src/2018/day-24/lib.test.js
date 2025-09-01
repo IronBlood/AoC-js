@@ -1,3 +1,4 @@
+import { describe, it, expect } from '@jest/globals';
 import {
 	parse_groups,
 	winning_units,
