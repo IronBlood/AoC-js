@@ -1,3 +1,4 @@
+import { describe, it, expect } from '@jest/globals';
 import {
 	min_moves,
 } from "./lib.js";

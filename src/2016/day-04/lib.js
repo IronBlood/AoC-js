@@ -22,10 +22,6 @@ export const is_real_room = str => {
 			count: v,
 		});
 	}
-	if (arr.length < 5) {
-		console.log(`[wtf] ${str}`);
-		return false;
-	}
 	arr.sort((a, b) => {
 		return a.count === b.count
 			? (a.code - b.code)
@@ -65,7 +61,7 @@ const encoder = new TextEncoder(),
  */
 export const decrypt = str => {
 	const arr = str.split("-");
-	const num = (+arr[3]) % 26;
+	const num = (+arr[arr.length - 1]) % 26;
 	arr.length = 3;
 	return arr.map(s => {
 		const buf = encoder.encode(s);

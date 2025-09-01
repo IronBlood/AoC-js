@@ -1,3 +1,4 @@
+import { describe, it, expect } from '@jest/globals';
 import {
 	count_decompressed_length,
 	count_decompressed_length_2,

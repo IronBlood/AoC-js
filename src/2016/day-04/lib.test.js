@@ -1,3 +1,4 @@
+import { describe, it, expect } from '@jest/globals';
 import {
 	is_real_room,
 	decrypt,
