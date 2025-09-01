@@ -1,3 +1,4 @@
+import { describe, it, expect } from '@jest/globals';
 import {
 	build_bridge,
 } from "./lib.js";

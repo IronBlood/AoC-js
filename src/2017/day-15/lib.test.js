@@ -1,3 +1,4 @@
+import { describe, it, expect } from '@jest/globals';
 import {
 	find_pairs,
 } from "./lib.js";

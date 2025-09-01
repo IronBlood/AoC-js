@@ -1,3 +1,4 @@
+import { describe, it, expect } from '@jest/globals';
 import {
 	get_captcha,
 } from "./lib.js";

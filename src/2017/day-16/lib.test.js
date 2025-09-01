@@ -1,3 +1,4 @@
+import { describe, it, expect } from '@jest/globals';
 import {
 	after_dance,
 } from "./lib.js";
