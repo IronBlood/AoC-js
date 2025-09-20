@@ -12,8 +12,8 @@ importers:
         specifier: ^6.3.3
         version: 6.3.3
       canvas:
-        specifier: ^3.1.2
-        version: 3.1.2
+        specifier: ^3.2.0
+        version: 3.2.0
       dotenv:
         specifier: ^16.5.0
         version: 16.5.0
@@ -634,8 +634,8 @@ packages:
   caniuse-lite@1.0.30001684:
     resolution: {integrity: sha512-G1LRwLIQjBQoyq0ZJGqGIJUXzJ8irpbjHLpVRXDvBEScFJ9b17sgK6vlx0GAJFE21okD7zXl08rRRUfq6HdoEQ==}
 
-  canvas@3.1.2:
-    resolution: {integrity: sha512-Z/tzFAcBzoCvJlOSlCnoekh1Gu8YMn0J51+UAuXJAbW1Z6I9l2mZgdD7738MepoeeIcUdDtbMnOg6cC7GJxy/g==}
+  canvas@3.2.0:
+    resolution: {integrity: sha512-jk0GxrLtUEmW/TmFsk2WghvgHe8B0pxGilqCL21y8lHkPUGa6FTsnCNtHPOzT8O3y+N+m3espawV80bbBlgfTA==}
     engines: {node: ^18.12.0 || >= 20.9.0}
 
   chalk@4.1.2:
@@ -2243,7 +2243,7 @@ snapshots:
 
   caniuse-lite@1.0.30001684: {}
 
-  canvas@3.1.2:
+  canvas@3.2.0:
     dependencies:
       node-addon-api: 7.1.1
       prebuild-install: 7.1.3
