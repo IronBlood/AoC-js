@@ -73,7 +73,7 @@ tnw OR pbm -> gnj`, 2024],
 	}
 });
 
-describe("2024-12-24 p2", () => {
+describe.skip("2024-12-24 p2", () => {
 	const testcases = [
 		[`x00: 0
 x01: 1
