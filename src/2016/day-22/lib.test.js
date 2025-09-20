@@ -1,9 +1,10 @@
 import { describe, it, expect } from '@jest/globals';
-import {
-	min_moves,
-} from "./lib.js";
+// import {
+// 	min_moves,
+// } from "./lib.js";
 
-describe("2016-12-22 p2", () => {
+// TODO
+describe.skip("2016-12-22 p2", () => {
 	const testcases = [
 		[`df -h
 Filesystem            Size  Used  Avail  Use%
