@@ -3,7 +3,9 @@ import {
 	mine_coin
 } from "./lib.js";
 
-describe("2015-12-04", () => {
+const should_skip = !!process.env.SKIP_MD5;
+
+(should_skip ? describe.skip : describe)("2015-12-04", () => {
 	const testcases = [
 		["abcdef", 609043],
 		["pqrstuv", 1048970],

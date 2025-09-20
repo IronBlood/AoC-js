@@ -3,7 +3,9 @@ import {
 	find_pw,
 } from "./lib.js";
 
-describe("2016-12-05", () => {
+const should_skip = !!process.env.SKIP_MD5;
+
+(should_skip ? describe.skip : describe)("2016-12-05", () => {
 	const testcases = [
 		["abc", "18f47a30"],
 	];
