@@ -1,3 +1,6 @@
+# AoC-js
+
+[![Coverage Status](https://coveralls.io/repos/github/IronBlood/AoC-js/badge.svg?branch=main)](https://coveralls.io/github/IronBlood/AoC-js?branch=main)
 
 ## How to Use
 

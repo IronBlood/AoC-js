@@ -3,6 +3,7 @@
 node_modules/
 input.txt
 *.chatgpt.js
+coverage/
 
 # rust
 target/
