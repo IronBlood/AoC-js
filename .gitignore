@@ -13,3 +13,4 @@ target/
 /*.svg
 /*.png
 /*.ods
+/*.cpuprofile
