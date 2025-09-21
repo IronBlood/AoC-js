@@ -50,10 +50,7 @@ export const produce_x = (name, recipes, storage, n = 1) => {
 	if (curr < n) {
 		const diff = n - curr;
 		const recipe = recipes.get(name);
-		let k = 1;
-		while (k * recipe.output < diff) {
-			k++;
-		}
+		const k = Math.ceil(diff / recipe.output);
 
 		for (const x of recipe.ingredients) {
 			produce_x(x.name, recipes, storage, k * x.count);
