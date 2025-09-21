@@ -1,9 +1,0 @@
-[package]
-name = "AoC-aux"
-version = "0.1.0"
-edition = "2021"
-
-[[bin]]
-name = "main-2018-12-14"
-path = "src/2018/day-14/main.rs"
-
