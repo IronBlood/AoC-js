@@ -1,3 +1,7 @@
+import {
+	PriorityQueue,
+} from "@datastructures-js/priority-queue";
+
 /**
  * @typedef {[number[], number[], number[], number[]]} Floors
  * @typedef {Object} SimulatorState
@@ -8,44 +12,6 @@
  */
 
 let dump_moves = false;
-
-/**
- * @template T
- * A simple deque implementation to reduce the overhead
- * of `Array.prototype.shift()`.
- */
-class Queue {
-	constructor() {
-		/** @private @type {T[]} */
-		this._queue = [];
-		/** @private @type {number} */
-		this._idx = 0;
-	}
-
-	/** @public */
-	size() {
-		return this._queue.length - this._idx;
-	}
-
-	/** @public @returns {T} */
-	shift() {
-		if (this.size() === 0) {
-			throw new Error("no item");
-		}
-
-		const el = this._queue[this._idx++];
-		if (this._idx > (this._queue.length >>> 1)) {
-			this._queue = this._queue.slice(this._idx);
-			this._idx = 0;
-		}
-		return el;
-	}
-
-	/** @public @param {T} el */
-	push(el) {
-		this._queue.push(el);
-	}
-}
 
 /**
  * deep clone
@@ -207,6 +173,17 @@ const gen_next_states = (state) => {
 };
 
 /**
+ * @param {SimulatorState} state
+ */
+const score_state = (state) => {
+	let res = -state.moves;
+	for (let i = 0; i < state.floors.length; i++) {
+		res += state.floors[i].length * i;
+	}
+	return res;
+};
+
+/**
  * @param {string} data
  */
 export const minimum_moves = (data, part = 1, debug_enabled = false) => {
@@ -264,14 +241,14 @@ export const minimum_moves = (data, part = 1, debug_enabled = false) => {
 
 	/** @type {Set<string>} */
 	const visited = new Set();
-	/** @type {Queue<SimulatorState>} */
-	const queue = new Queue();
-	queue.push(state);
+	/** @type {PriorityQueue<SimulatorState>} */
+	const queue = new PriorityQueue((a, b) => score_state(b) - score_state(a));
+	queue.enqueue(state);
 
 	let count = 0;
 	let last_time = new Date();
 
-	while (queue.size() > 0) {
+	while (!queue.isEmpty()) {
 		if (debug_enabled) {
 			if ((count % 10000) === 0) {
 				const time_now = new Date();
@@ -281,7 +258,7 @@ export const minimum_moves = (data, part = 1, debug_enabled = false) => {
 			count++;
 		}
 
-		state = queue.shift();
+		state = queue.dequeue();
 		if (is_complete(state)) {
 			if (dump_moves) {
 				console.log(state.prev_moves);
@@ -295,7 +272,7 @@ export const minimum_moves = (data, part = 1, debug_enabled = false) => {
 		}
 		visited.add(state_key);
 
-		gen_next_states(state).forEach(s => queue.push(s));
+		gen_next_states(state).forEach(s => queue.enqueue(s));
 	}
 
 	return -1;

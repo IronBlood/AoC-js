@@ -7,5 +7,5 @@ import {
  */
 export function main(content) {
 	console.log(minimum_moves(content));
-	console.log("For part 2, use the Rust implementation");
+	console.log(minimum_moves(content, 2));
 }
