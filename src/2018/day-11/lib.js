@@ -1,3 +1,4 @@
+// @ts-check
 /**
  * @param {number} x
  * @param {number} y
@@ -13,39 +14,49 @@ export const get_power_level = (x, y, serial_number) => {
 	return num - 5;
 };
 
+const build_sat = serial_number => {
+	const n = 300;
+	const sat = Array.from({ length: n + 1 }, () => new Int32Array(n + 1));
+	for (let i = 1; i <= n; i++) {
+		let row_sum = 0;
+		for (let j = 1; j <= n; j++) {
+			row_sum += get_power_level(i, j, serial_number);
+			sat[i][j] = sat[i - 1][j] + row_sum;
+		}
+	}
+	return sat;
+};
+
+/**
+ * @param {Int32Array[]} sat
+ * @param {number} x1
+ * @param {number} y1
+ * @param {number} x2
+ * @param {number} y2
+ */
+const rect_sum = (sat, x1, y1, x2, y2) => sat[x2][y2] - sat[x1 - 1][y2] - sat[x2][y1 - 1] + sat[x1 - 1][y1 - 1];
+
 /**
  * @param {number} serial_number
  * @returns {string}
  */
 export const largest_total_power_pos = (serial_number) => {
 	const size = 301;
-	/** @type {number[][]} */
-	const grid = Array.from({ length: size }, () => Array(size));
-
-	for (let i = 1; i < size; i++) {
-		for (let j = 1; j < size; j++) {
-			grid[i][j] = get_power_level(i, j, serial_number);
-		}
-	}
-
-	let max = -1, /** @type {number[]} */ pos = null;
+	const sat = build_sat(serial_number);
+	let best = -Infinity, bx = 0, by = 0;
 
 	for (let i = 1; i < size - 2; i++) {
 		for (let j = 1; j < size - 2; j++) {
-			let sum = 0;
-			for (let u = i; u < i + 3; u++) {
-				for (let v = j; v < j + 3; v++) {
-					sum += grid[u][v];
-				}
-			}
-			if (sum > max) {
-				max = sum;
-				pos = [i, j];
+			const s = rect_sum(sat, i, j, i + 2, j + 2);
+			if (s > best) {
+				best = s;
+				bx = i;
+				by = j;
 			}
 		}
 	}
 
-	return pos.join(",");
+	return [bx, by].join(",");
 };
 
 /**
@@ -54,34 +65,26 @@ export const largest_total_power_pos = (serial_number) => {
  */
 export const largest_total_power = (serial_number) => {
 	const size = 301;
-	/** @type {number[][]} */
-	const grid = Array.from({ length: size }, () => Array(size));
-
-	for (let i = 1; i < size; i++) {
-		for (let j = 1; j < size; j++) {
-			grid[i][j] = get_power_level(i, j, serial_number);
-		}
-	}
-
-	let max = -1, /** @type {number[]} */ pos = null;
+	const sat = build_sat(serial_number);
+	let best = -Infinity, bx = 0, by = 0, bk = 0;
 
 	for (let k = 1; k < size; k++) {
-		for (let i = 1; i < size - k + 1; i++) {
-			for (let j = 1; j < size - k + 1; j++) {
-				let sum = 0;
-				for (let u = i; u < i + k; u++) {
-					for (let v = j; v < j + k; v++) {
-						sum += grid[u][v];
-					}
-				}
-				if (sum > max) {
-					max = sum;
-					pos = [i, j, k];
+		const limit = size - k;
+		for (let i = 1; i <= limit; i++) {
+			const x2 = i + k - 1;
+			for (let j = 1; j <= limit; j++) {
+				const y2 = j + k - 1;
+				const s = rect_sum(sat, i, j, x2, y2);
+				if (s > best) {
+					best = s;
+					bx = i;
+					by = j;
+					bk = k;
 				}
 			}
 		}
 	}
 
-	return pos.join(",");
+	return [bx, by, bk].join(",");
 }
 
