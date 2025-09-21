@@ -13,8 +13,6 @@ Here're the dependencies that will be installed when running `pnpm i`:
 - [@datastructures-js/priority-queue](https://www.npmjs.com/package/@datastructures-js/priority-queue): an implementation of `PriorityQueue` and other useful data structures, used with Dijkstra and A-star algorithms.
 - [jest](https://www.npmjs.com/package/jest): a testing framework, the unit tests are generated from descriptions of each day.
 
-> `canvas` needs pre-built binaries. `pnpm approve-builds` is needed after the installation of `canvas`.
-
 To run a unit test for a day, e.g. Dec 1, 2015:
 
 ```bash

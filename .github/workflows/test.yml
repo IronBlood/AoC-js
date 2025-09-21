@@ -2,7 +2,18 @@ name: Test and Upload Coverage
 
 on:
   push:
+    paths:
+      - '.github/workflows/test.yml'
+      - 'src/**'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
     branches: [main]
+  pull_request:
+    paths:
+      - '.github/workflows/test.yml'
+      - 'src/**'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
 
 jobs:
   test:
