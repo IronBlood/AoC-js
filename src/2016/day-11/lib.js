@@ -80,12 +80,52 @@ const get_bit = (num) => {
 /**
  * @param {SimulatorState} state
  * @returns {string}
+ * @deprecated
  */
-const stringify_state = (state) => {
+// @ts-ignore
+const serialize_state = (state) => {
 	return [
 		state.elevator,
 		state.floors.map(f => f.reduce((bit, curr) => bit | get_bit(curr), 0)).join(","),
 	].join(";");
+};
+
+/**
+ * 405s -> 0.77s (i5 6500)
+ * 217.51s -> 0.47s (R7 5800x)
+ *
+ * There're 5 generators and 5 microchips for part 1. There're 2 more generators
+ * and 2 more microchips for part 2. The maximum num of generators or chips on a
+ * floor is 7, which can be represented as a 3-bit digit.
+ *
+ * So instead of tracking the exact state of which generators and chips have been
+ * placed on a floor, we can simply track how many chips and generators are on a
+ * floor, since there's no difference between A-compatible microchip and B-compatible
+ * microchip. This will reduce a lot of combinations. And also, the state of one
+ * floor can be encoded in a 6-bit digit.
+ *
+ * That makes each state can be encoded in a 26-bit digit: 24 bits for 4 floors,
+ * and 2 extra bits for the elevator (0-3).
+ * @param {SimulatorState} state
+ * @returns {number}
+ */
+const serialize_state_2 = (state) => {
+	let res = 0;
+	for (let i = 0; i < 4; i++) {
+		const floor = state.floors[i];
+		let g_count = 0, m_count = 0;
+		for (let x of floor) {
+			if (x > 0) {
+				m_count++;
+			} else {
+				g_count++;
+			}
+		}
+
+		res |= (m_count << 3 | g_count) << (6 * i);
+	}
+
+	return (res << 2) | state.elevator;
 };
 
 /**
@@ -241,7 +281,7 @@ export const minimum_moves = (data, part = 1, debug_enabled = false) => {
 		prev_moves: [],
 	};
 
-	/** @type {Set<string>} */
+	/** @type {Set<string | number>} */
 	const visited = new Set();
 	/** @type {PriorityQueue<SimulatorState>} */
 	const queue = new PriorityQueue((a, b) => score_state(b) - score_state(a));
@@ -268,7 +308,7 @@ export const minimum_moves = (data, part = 1, debug_enabled = false) => {
 			return state.moves;
 		}
 
-		const state_key = stringify_state(state);
+		const state_key = serialize_state_2(state);
 		if (visited.has(state_key)) {
 			continue;
 		}
@@ -279,4 +319,3 @@ export const minimum_moves = (data, part = 1, debug_enabled = false) => {
 
 	return -1;
 };
-
