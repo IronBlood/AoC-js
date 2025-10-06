@@ -20,6 +20,7 @@ let dump_moves = false;
  */
 const dup_state = (state) => {
 	return {
+		// @ts-ignore
 		floors: state.floors.map(floor => floor.slice()),
 		elevator: state.elevator,
 		moves: state.moves,
@@ -28,7 +29,7 @@ const dup_state = (state) => {
 };
 
 /**
- * @template {T}
+ * @template T
  * @param {T[][]}  result     - the array to store combinations
  * @param {T[]}    stack      - current stack
  * @param {number} idx        - current idx
@@ -233,6 +234,7 @@ export const minimum_moves = (data, part = 1, debug_enabled = false) => {
 
 	/** @type {SimulatorState} */
 	let state = {
+		// @ts-ignore
 		floors,
 		elevator: 0,
 		moves: 0,
