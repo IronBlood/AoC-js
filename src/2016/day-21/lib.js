@@ -104,14 +104,13 @@ export const unscramble = (data, input) => {
 					x = arr.length - x;
 				rotate_left(arr, x);
 			} else {
-				// BUG and FIXME
 				const char = cmd[cmd.length - 1];
 				const str = arr.join("");
 				const dup = arr.slice();
 				for (let i = 0; i < arr.length; i++) {
 					rotate_left(dup, 1);
 					let idx = dup.indexOf(char);
-					let count = 1 + idx + (idx >= 4 ? 1 : 0) % arr.length;
+					let count = (1 + idx + (idx >= 4 ? 1 : 0)) % arr.length;
 					count = arr.length - count;
 					const tmp = dup.slice();
 					rotate_left(tmp, count);

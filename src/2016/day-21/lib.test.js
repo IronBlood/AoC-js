@@ -54,7 +54,7 @@ describe("2016-12-21 p2-ut", () => {
 		[`move position 1 to position 4`, "bcdea", "bdeac"],
 		[`move position 3 to position 0`, "bdeac", "abdec"],
 		[`rotate based on position of letter b`, "abdec", "ecabd"],
-		// [`rotate based on position of letter d`, "ecabd", "decab"], // BUG
+		[`rotate based on position of letter d`, "ecabd", "decab"],
 	];
 
 	for (let i = 0; i < testcases.length; i++) {
