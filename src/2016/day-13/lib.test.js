@@ -5,6 +5,7 @@ import {
 } from "./lib.js";
 
 describe("2016-12-13 p1", () => {
+	/** @type {[string, [number, number], number][]} */
 	const testcases = [
 		[`10`, [7,4], 11],
 	];
@@ -18,6 +19,7 @@ describe("2016-12-13 p1", () => {
 });
 
 describe("2016-12-13 p2", () => {
+	/** @type {[string, number, number][]} */
 	const testcases = [
 		[`10`, 0, 1],
 		[`10`, 1, 3],

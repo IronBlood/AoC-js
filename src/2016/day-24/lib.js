@@ -10,7 +10,7 @@ const DIRECTIONS = [0, 1, 0, -1, 0];
 /**
  * @param {string[][]} grid
  * @param {[number, number]} pos
- * @returns {Map<string, [number, number]>}
+ * @returns {Map<string, number>}
  */
 const bfs_min_distance = (grid, pos) => {
 	const visited = Array.from({ length: grid.length }, () => Array(grid[0].length).fill(0));

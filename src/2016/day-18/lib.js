@@ -1,5 +1,6 @@
 /**
  * @param {string} data
+ * @param {number} rows
  * @returns {number}
  */
 export const count_safe_tiles = (data, rows) => {
