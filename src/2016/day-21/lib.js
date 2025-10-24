@@ -1,29 +1,6 @@
-/**
- * @param {any[]} arr
- * @param {number} l
- * @param {number} r
- */
-const rotate = (arr, l, r) => {
-	while (l < r) {
-		const tmp = arr[l];
-		arr[l++] = arr[r];
-		arr[r--] = tmp;
-	}
-};
-
-/**
- * @param {any[]} arr
- * @param {number} n
- */
-const rotate_left = (arr, n) => {
-	n %= arr.length;
-	if (n === 0)
-		return;
-
-	rotate(arr, 0, n-1);
-	rotate(arr, n, arr.length - 1);
-	rotate(arr, 0, arr.length - 1);
-};
+import {
+	rotate_left,
+} from "../../lib/array.js";
 
 /**
  * @param {string} data

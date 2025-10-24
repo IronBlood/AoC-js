@@ -52,3 +52,32 @@ export const zip_with_complement = (arr, subsets) => {
 		return [left, right];
 	});
 };
+
+/**
+ * @template T
+ * @param {T[]} arr
+ * @param {number} l
+ * @param {number} r
+ */
+export const reverse_range = (arr, l, r) => {
+	while (l < r) {
+		const tmp = arr[l];
+		arr[l++] = arr[r];
+		arr[r--] = tmp;
+	}
+};
+
+/**
+ * @template T
+ * @param {T[]} arr
+ * @param {number} n
+ */
+export const rotate_left = (arr, n) => {
+	n %= arr.length;
+	if (n === 0)
+		return;
+
+	reverse_range(arr, 0, n-1);
+	reverse_range(arr, n, arr.length - 1);
+	return arr.reverse();
+};
