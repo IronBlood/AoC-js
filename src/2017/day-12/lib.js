@@ -4,20 +4,22 @@
  */
 export const count_connected = (data) => {
 	const adjs = data.split("\n").map(line => line.split(" <-> ")[1].split(", ").map(Number));
-	/** @type {Set<number>} */
-	const visited = new Set();
+	/** @type {(0|1)[]} */
+	const visited = Array(adjs.length).fill(0);
 	let queue = [0];
+	let count = 0;
 	while (queue.length > 0) {
 		const next_queue = [];
 		queue.forEach(q => {
-			if (!visited.has(q)) {
-				visited.add(q);
-				next_queue.push(...adjs[q]);
+			if (!visited[q]) {
+				visited[q] = 1;
+				count++;
+				next_queue.push(adjs[q]);
 			}
 		});
-		queue = next_queue;
+		queue = next_queue.flat();
 	}
-	return visited.size;
+	return count;
 };
 
 /**
