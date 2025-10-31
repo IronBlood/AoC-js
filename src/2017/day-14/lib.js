@@ -3,17 +3,28 @@ import {
 } from "../day-10/lib.js";
 
 /**
- * @param {number} num a 32-bit integer
+ * @param {string} hex_str
  */
-const count_bit = (num) => {
+const count_bit_str = (hex_str) => {
+	const POP = [0,1,1,2,1,2,2,3,1,2,2,3,2,3,3,4];
 	let count = 0;
-	for (let i = 0; i < 32; i++) {
-		if (num & (1 << i)) {
-			count++;
+	for (let i = 0, len = hex_str.length; i < len; i++) {
+		const char = hex_str.charCodeAt(i);
+		let idx = -1;
+		if (char >= 48 && char < 58) {
+			idx = char - 48; // 0-9
+		} else if (char >= 65 && char < 71) {
+			idx = 10 + char - 65; // A-F
+		} else if (char >= 97 && char < 103) {
+			idx = 10 + char - 97; // a-f
 		}
+		if (idx < -1) {
+			throw new Error("invalid str");
+		}
+		count += POP[idx];
 	}
 	return count;
-}
+};
 
 /**
  * @param {string} data
@@ -23,9 +34,7 @@ export const count_squares = (data) => {
 	let squares = 0;
 	for (let i = 0; i < 128; i++) {
 		const str = hash(`${data}-${i}`);
-		for (let j = 0; j < str.length; j += 8) {
-			squares += count_bit(parseInt(str.substring(j, j+8), 16));
-		}
+		squares += count_bit_str(str);
 	}
 	return squares;
 };
