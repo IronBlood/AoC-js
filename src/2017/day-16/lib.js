@@ -52,15 +52,24 @@ export const after_dance = (moves, str, part = 1) => {
 	let arr = str.split("");
 	const cmds = moves.split(",");
 
-	let i = part === 1 ? 1 : 1_000_000_000;
+	const total = part === 1 ? 1 : 1_000_000_000;
+	/** @type {string[]} */
+	const states = [];
+	let step = 0;
 
-	/** @type {Map<string, string>} */
+	/** @type {Map<string, number>} */
 	const seen = new Map();
-	while (i-- > 0) {
+	while (step < total) {
 		if (seen.has(str)) {
-			str = seen.get(str);
-			continue;
+			const first = seen.get(str);
+			const cycle = step - first;
+			const remain = (total - step) % cycle;
+			str = states[first + remain];
+			break;
 		}
+
+		seen.set(str, step++);
+		states.push(str);
 
 		cmds.forEach(cmd => {
 			const d = cmd.substring(1);
@@ -71,9 +80,7 @@ export const after_dance = (moves, str, part = 1) => {
 			}
 		});
 
-		const next = arr.join("");
-		seen.set(str, next);
-		str = next;
+		str = arr.join("");
 	}
 	return str;
 };
