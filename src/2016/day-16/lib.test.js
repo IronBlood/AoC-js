@@ -3,6 +3,7 @@ import {
 	dragon_curve,
 	get_checksum,
 	disk_checksum,
+	disk_checksum2,
 } from "./lib.js";
 
 describe("2016-12-16 p1_ut-get_checksum", () => {
@@ -33,6 +34,7 @@ describe("2016-12-16 p1_ut-dragon_curve", () => {
 });
 
 describe("2016-12-16 p1", () => {
+	/** @type {[string, number, string][]} */
 	const testcases = [
 		[`10000`, 20, "01100"],
 	];
@@ -41,6 +43,7 @@ describe("2016-12-16 p1", () => {
 		it(`test-${i}`, () => {
 			const tc = testcases[i];
 			expect(disk_checksum(tc[0], tc[1])).toBe(tc[2]);
+			expect(disk_checksum2(tc[0], tc[1])).toBe(tc[2]);
 		})
 	}
 });
