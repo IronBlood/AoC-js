@@ -1,9 +1,11 @@
 import { describe, it, expect } from '@jest/globals';
 import {
 	count_safe_tiles,
+	count_safe_tiles2,
 } from "./lib.js";
 
 describe("2016-12-18", () => {
+	/** @type {[string, number, number][]} */
 	const testcases = [
 		[`..^^.`, 3, 6],
 		[`.^^.^.^^^^`, 10, 38],
@@ -13,6 +15,7 @@ describe("2016-12-18", () => {
 		it(`test-${i}`, () => {
 			const tc = testcases[i];
 			expect(count_safe_tiles(tc[0], tc[1])).toBe(tc[2]);
+			expect(count_safe_tiles2(tc[0], tc[1])).toBe(tc[2]);
 		})
 	}
 });
