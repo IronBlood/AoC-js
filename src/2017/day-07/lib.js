@@ -41,7 +41,7 @@ export const get_root = (data) => {
 
 /**
  * @param {string} data
- * @return {string}
+ * @return {number}
  */
 export const find_wrong_weight = (data) => {
 	const regex_node = /(\w+) \((\d+)\)/;

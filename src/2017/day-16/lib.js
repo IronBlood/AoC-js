@@ -1,5 +1,5 @@
 /**
- * @param {any[]}
+ * @param {any[]} arr
  * @param {number} l
  * @param {number} r
  */

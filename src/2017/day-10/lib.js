@@ -1,5 +1,5 @@
 /**
- * @template {T}
+ * @template T
  * @param {T[]} arr
  * @param {number} start_idx
  * @param {number} count
