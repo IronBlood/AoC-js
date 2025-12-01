@@ -22,10 +22,9 @@ export async function main() {
 
 	const [, year, day] = match;
 	const yearNum = +year;
-	const dayNum = +day;
 
-	if (yearNum < 2015 || yearNum > 2024) {
-		console.log("Year must be between 2015 and 2024");
+	if (yearNum < 2015 || yearNum > 2025) {
+		console.log("Year must be between 2015 and 2025");
 		process.exit(1);
 	}
 
