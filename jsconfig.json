@@ -1,5 +1,7 @@
 {
 	"compilerOptions": {
+		"moduleResolution": "nodenext",
+		"module": "nodenext",
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
 		"checkJs": true,

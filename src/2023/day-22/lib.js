@@ -5,8 +5,8 @@ import { PriorityQueue } from "@datastructures-js/priority-queue";
 const UNOCCUPIED = -1;
 
 /**
- * @typedef {import("./types").Cube} Cube
- * @typedef {import("./types").Brick} Brick
+ * @typedef {import("./types.d.ts").Cube} Cube
+ * @typedef {import("./types.d.ts").Brick} Brick
  */
 
 /**
